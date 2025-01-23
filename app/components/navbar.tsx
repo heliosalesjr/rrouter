@@ -7,7 +7,7 @@ export default function Navbar() {
         <div className="flex flex-col md:flex-row items-center">
           <NavLink to="/" className="flex items-center mb-5 md:mb-0">
             <span className="text-xl font-black text-slate-700 select-none">
-              Hey!<span className="text-violet-500">Explorer</span>
+              Space<span className="text-violet-500">Odissey</span>
             </span>
           </NavLink>
           <nav className="flex flex-wrap items-center ml-0 md:ml-8 md:border-l md:pl-8">
@@ -19,10 +19,10 @@ export default function Navbar() {
               Home
             </NavLink>
             <NavLink
-              to="/countries"
+              to="/universe"
               className="mr-5 font-medium text-gray-600 hover:text-gray-900"
             >
-              Countries
+              Universe
             </NavLink>
             <NavLink
               to="/about"
