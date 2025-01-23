@@ -7,7 +7,7 @@ export default function Navbar() {
         <div className="flex flex-col md:flex-row items-center">
           <NavLink to="/" className="flex items-center mb-5 md:mb-0">
             <span className="text-xl font-black text-slate-700 select-none">
-              Space<span className="text-violet-500">Odissey</span>
+              Space<span className="text-sky-500">Odissey</span>
             </span>
           </NavLink>
           <nav className="flex flex-wrap items-center ml-0 md:ml-8 md:border-l md:pl-8">

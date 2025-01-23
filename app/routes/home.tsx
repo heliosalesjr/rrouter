@@ -4,8 +4,8 @@ import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "RESTExplorer" },
-    { name: "Check out country data!", content: "Welcome to RESTExplorer." },
+    { title: "Space Odyssey" },
+    { name: "Check out the universe!", content: "Welcome to Space Odyssey" },
   ];
 }
 
@@ -25,8 +25,8 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row sm:space-x-4">
                 <Link
-                  to="/countries"
-                  className="flex items-center justify-center px-6 py-3 text-lg text-white bg-sky-600 rounded-md hover:bg-indigo-700"
+                  to="/universe"
+                  className="flex items-center justify-center px-6 py-3 text-lg text-white bg-sky-600 rounded-md hover:bg-sky-700"
                 >
                   Explore Now
                   <svg
