@@ -7,7 +7,7 @@ export default [
 
     ...prefix("universe", [
         index("routes/universe.tsx"),
-        route(":country", "routes/country.tsx")
+        route(":celestialBody", "routes/celestialBody.tsx")
     ]),
        
 
