@@ -29,7 +29,7 @@ export async function clientLoader({ params }: Route.LoaderArgs) {
   );
 
   if (!celestialBody) {
-    throw new Error("Celestial body not found");
+    throw new Error("Celestial body not found - NASA is DOWN!");
   }
 
   return celestialBody;
