@@ -50,11 +50,11 @@ export default function Universe({ loaderData }: { loaderData: any[] }) {
           {filteredBodies.map((body: any, index: number) => (
             <li
               key={index}
-              className="bg-white border border-gray-200 rounded-xl p-4 shadow hover:shadow-lg transition"
+              className="bg-white border border-slate-200 rounded-xl p-4 shadow hover:shadow-lg transition"
             >
               <Link
                 to={`/universe/${body.title}`}
-                className="text-indigo-600 hover:underline text-lg font-semibold"
+                className="text-sky-600 hover:underline text-lg font-semibold"
               >
                 {body.title}
               </Link>
