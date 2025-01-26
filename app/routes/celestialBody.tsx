@@ -1,68 +1,69 @@
+import { useLoaderData, useParams } from "react-router";
 
-import type { Route } from "../+types/celestialBody";
+export async function clientLoader({ params }: { params: { celestialBody: string } }) {
+  const apiKey = process.env.REACT_APP_NASA_API_KEY;
+  const category = params.celestialBody;
 
-export async function clientLoader({ params }: Route.LoaderArgs) {
-  const celestialBodyName = params.celestialBody;
-
-  if (!celestialBodyName) {
-    throw new Error("Celestial body not specified");
-  }
-
-  const NASA_API_KEY = process.env.REACT_APP_NASA_API_KEY;
-
-  if (!NASA_API_KEY) {
-    throw new Error("API Key is missing. Please check your .env file.");
-  }
-
-  const res = await fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&count=6`
-  );
-
+  const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=6`);
   if (!res.ok) {
-    throw new Error(`Error fetching celestial body data: ${res.status}`);
+    throw new Error("Celestial body not found - NASA is DOWN!");
   }
 
   const data = await res.json();
 
-  const celestialBody = data.find((body: any) =>
-    body.title.toLowerCase().includes(celestialBodyName.toLowerCase())
-  );
+  // Adiciona um filtro por categoria com base em palavras-chave
+  const keywords: { [key: string]: string[] } = {
+    planets: ["Mars", "Earth", "Venus", "Jupiter", "Saturn", "Neptune", "Uranus"],
+    stars: ["star", "sun", "nebula", "galaxy"],
+    missions: ["mission", "apollo", "rover", "spacecraft"],
+  };
 
-  if (!celestialBody) {
-    throw new Error("Celestial body not found - NASA is DOWN!");
+  const filteredData = data.filter((item: any) => {
+    const content = `${item.title} ${item.explanation}`.toLowerCase();
+    return keywords[category]?.some((keyword) => content.includes(keyword.toLowerCase()));
+  });
+
+  if (filteredData.length === 0) {
+    throw new Error("No celestial bodies found for this category.");
   }
 
-  return celestialBody;
+  return filteredData;
 }
 
-export default function CelestialBody({ loaderData }: Route.ComponentProps) {
-  const body = {
-    title: loaderData?.title || "N/A",
-    explanation: loaderData?.explanation || "No description available.",
-    imageUrl: loaderData?.url || "",
-    date: loaderData?.date || "Unknown date",
-  };
+
+
+export default function CelestialBody() {
+  const { celestialBody } = useParams(); // Pega o parâmetro da URL
+  const loaderData = useLoaderData<any[]>();
 
   return (
     <div className="p-6">
-      <h2 className="text-3xl font-bold mb-4 text-gray-900">{body.title}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <p className="text-gray-700 mb-4">
-            <span className="font-semibold">Date:</span> {body.date}
-          </p>
-          <p className="text-gray-700">{body.explanation}</p>
-        </div>
-        {body.imageUrl && (
-          <div className="flex justify-center items-center">
-            <img
-              src={body.imageUrl}
-              alt={body.title}
-              className="w-full h-auto border rounded shadow-lg"
-            />
-          </div>
-        )}
-      </div>
+      <h2 className="text-2xl font-bold mb-6 text-gray-900 capitalize">
+        {celestialBody}
+      </h2>
+
+      {loaderData.length === 0 ? (
+        <p>No celestial bodies found for this category.</p>
+      ) : (
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {loaderData.map((body: any, index: number) => (
+            <li
+              key={index}
+              className="bg-white border border-slate-200 rounded-xl p-4 shadow hover:shadow-lg transition"
+            >
+              <img
+                src={body.url}
+                alt={body.title}
+                className="w-full h-40 object-cover rounded"
+              />
+              <h3 className="text-lg font-semibold mt-2">{body.title}</h3>
+              <p className="text-gray-600 text-sm mt-1">
+                {body.explanation.substring(0, 100)}...
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
