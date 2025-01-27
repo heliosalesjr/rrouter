@@ -45,7 +45,7 @@ export default function Home() {
   }, []); // Executa uma única vez ao carregar a página.
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[85vh] overflow-hidden">
       {imageData ? (
         <>
           <img
@@ -59,7 +59,7 @@ export default function Home() {
         </>
       ) : (
         <div className="flex items-center justify-center w-full h-full bg-gray-200 animate-pulse">
-          <p className="text-lg text-gray-500">Loading...</p>
+          <p className="text-lg text-red-500">Loading...</p>
         </div>
       )}
 

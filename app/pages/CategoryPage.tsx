@@ -9,7 +9,7 @@ export default function CategoryPage() {
       <div className="p-6">
         <h1 className="text-3xl font-bold text-red-600">Erro ao carregar dados</h1>
         <p className="mt-4 text-gray-600">
-          {error.message || "Ocorreu um erro desconhecido. Tente novamente mais tarde."}
+          {error.message || "Try again later"}
         </p>
       </div>
     );
@@ -38,7 +38,7 @@ export default function CategoryPage() {
           ))}
         </ul>
       ) : (
-        <div>Nenhum resultado encontrado.</div>
+        <div>No results found</div>
       )}
     </div>
   );
