@@ -45,7 +45,7 @@ export default function Universe() {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-slate-100">
       <h2 className="text-3xl font-bold mb-6 text-slate-700 text-center py-4">Explore the Universe</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
         {categories.map((category) => (
