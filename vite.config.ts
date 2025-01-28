@@ -18,5 +18,7 @@ export default defineConfig({
     outDir: "build/client", // this is the output directory, I've had to change it to build/client instead of dist and change that on vercel as well
     emptyOutDir: true,
     
+    
   },
+  plugins: [reactRouter(), tsconfigPaths()],
 });
