@@ -15,6 +15,11 @@ export default defineConfig({
     "process.env": process.env,
   },
   build: {
-    outDir: "client", // Mude para 'dist' ou o diretório que você quer que o build seja gerado
+    outDir: "dist", // Define explicitamente o diretório de saída
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Certifique-se de evitar divisão desnecessária
+      },
+    },
   },
 });
