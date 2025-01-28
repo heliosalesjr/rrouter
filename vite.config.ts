@@ -15,7 +15,8 @@ export default defineConfig({
     "process.env": process.env,
   },
   build: {
-    outDir: "dist", // Define explicitamente o diretório de saída
+    outDir: "build/client", // Define explicitamente o diretório de saída
+    emptyOutDir: true,
     
   },
 });
