@@ -15,7 +15,7 @@ export default defineConfig({
     "process.env": process.env,
   },
   build: {
-    outDir: "dist", // Define explicitamente o diretório de saída
+    outDir: "build_output", // Define explicitamente o diretório de saída
     rollupOptions: {
       output: {
         manualChunks: undefined, // Certifique-se de evitar divisão desnecessária
