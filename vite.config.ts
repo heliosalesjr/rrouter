@@ -15,6 +15,6 @@ export default defineConfig({
     "process.env": process.env,
   },
   build: {
-    outDir: "dist", // Mude para 'dist' ou o diretório que você quer que o build seja gerado
+    outDir: "client", // Mude para 'dist' ou o diretório que você quer que o build seja gerado
   },
 });
