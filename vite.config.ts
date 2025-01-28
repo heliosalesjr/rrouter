@@ -15,7 +15,7 @@ export default defineConfig({
     "process.env": process.env,
   },
   build: {
-    outDir: "build/client", // Define explicitamente o diretório de saída
+    outDir: "build/client", // this is the output directory, I've had to change it to build/client instead of dist and change that on vercel as well
     emptyOutDir: true,
     
   },
